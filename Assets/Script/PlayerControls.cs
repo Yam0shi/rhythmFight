@@ -22,7 +22,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private Transform[] waysForPlayer;
     [SerializeField] private int indexOfWays;
     [SerializeField] private Animator playerAnims;
-
+    [SerializeField] private GameObject chutTest;
     void Start()
     {
         indexOfWays = 2;
@@ -43,9 +43,14 @@ public class PlayerControls : MonoBehaviour
 
         if (takeDamage)
         {
+            Debug.Log("invincibilité activé");
             StartCoroutine(Invincibility());
-        }else
+        }
+        else
+        {
+            Debug.Log("invincibilité désactivé");
             StopCoroutine(Invincibility());
+        }
     }
 
     void MovingPlayer()
@@ -54,8 +59,6 @@ public class PlayerControls : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            
-
             if (nextIndex <= waysForPlayer.Length - 1)
             {
                 playerAnims.SetFloat("direction", 1);
@@ -90,19 +93,25 @@ public class PlayerControls : MonoBehaviour
 
     private IEnumerator Invincibility()
     {
+        chutTest.SetActive(true);
         yield return new WaitForSeconds(2);
+        chutTest.SetActive(false);
         takeDamage = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ennemy") && takeDamage == false)
+        if (other.CompareTag("Ennemy"))
         {
-            takeDamage = true;
+                life.SetActive(true);
+            if(takeDamage == false)
+            {
+                takeDamage = true;
 
-            life.SetActive(true);
-            playerLife--;
-            sliderLife.value--;
+                playerLife--;
+                sliderLife.value--;
+            }
+            Destroy(other.gameObject);
         }
     }
 }

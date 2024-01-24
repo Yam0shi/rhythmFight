@@ -53,8 +53,8 @@ Material:
     - _shadowBrightness: 0.434
     m_Colors:
     - _Colordark: {r: 0.06123176, g: 0.3018868, b: 0.20218669, a: 0}
-    - _Colorlight: {r: 0.26883864, g: 0.6981132, b: 0.1745283, a: 0}
-    - _Colormid: {r: 0.21132967, g: 0.4811321, b: 0.16113387, a: 0}
+    - _Colorlight: {r: 0.2688386, g: 0.6981132, b: 0.17452827, a: 0}
+    - _Colormid: {r: 0.21132964, g: 0.4811321, b: 0.16113383, a: 0}
     - _color: {r: 1, g: 1, b: 1, a: 0}
     - _offset_UV: {r: 1, g: 1, b: 0, a: 0}
     - _tiling_UV: {r: 1, g: 1, b: 0, a: 0}
