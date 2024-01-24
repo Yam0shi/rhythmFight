@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,12 @@ public class PlayerControls : MonoBehaviour
         }
 
         MovingPlayer();
+
+        if (takeDamage)
+        {
+            StartCoroutine(Invincibility());
+        }else
+            StopCoroutine(Invincibility());
     }
 
     void MovingPlayer()
@@ -79,6 +86,14 @@ public class PlayerControls : MonoBehaviour
         {
             playerAnims.SetFloat("direction", 0);
         }
+    }
+
+    private IEnumerator Invincibility()
+    {
+        gameObject.GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(2);
+        takeDamage = false;
+        gameObject.GetComponent<Collider>().enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
