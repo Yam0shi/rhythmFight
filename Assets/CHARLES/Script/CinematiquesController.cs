@@ -14,6 +14,7 @@ public class CinematiquesController : MonoBehaviour
     public GameObject level, life;
 
     public static bool isFinishIntro, isEnd;
+    private bool isPlay;
 
     public AudioSource audioIntro1, audioIntro2;
     public AudioSource audioEnd;
@@ -30,8 +31,9 @@ public class CinematiquesController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (nbNextPanel == 1) 
+        if (nbNextPanel == 1 && !isPlay) 
         { 
+            isPlay = true;
             audioIntro1.Stop();
             audioIntro2.Play();
         }
@@ -55,6 +57,7 @@ public class CinematiquesController : MonoBehaviour
                     level.SetActive(true);
                     life.SetActive(true);
                     isFinishIntro = true;
+                    GameManager.isGame = true;
                 }
             }
             

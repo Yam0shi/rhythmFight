@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private float timerPatience;
     public static GameManager instance;
 
+    public static bool isGame;
+
     #region(singleton)
     private void Awake()
     {
@@ -33,17 +35,21 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         barrePatience.maxValue = timerMax;
+        isGame = false;
     }
 
     private void Update()
     {
-        timerPatience += Time.deltaTime;
-        barrePatience.value += Time.deltaTime;
+        if (isGame) 
+        { 
+            timerPatience += Time.deltaTime;
+            barrePatience.value += Time.deltaTime;
 
-        if (timerPatience > timerMax)
-        {
-            CinematiquesController.isEnd = true;
-            Time.timeScale = 0.0f;
+            if (timerPatience > timerMax)
+            {
+                CinematiquesController.isEnd = true;
+                Time.timeScale = 0.0f;
+            }
         }
     }
 
