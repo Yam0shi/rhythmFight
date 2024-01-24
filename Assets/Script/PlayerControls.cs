@@ -90,15 +90,13 @@ public class PlayerControls : MonoBehaviour
 
     private IEnumerator Invincibility()
     {
-        gameObject.GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(2);
         takeDamage = false;
-        gameObject.GetComponent<Collider>().enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ennemy"))
+        if (other.CompareTag("Ennemy") && takeDamage == false)
         {
             takeDamage = true;
 
