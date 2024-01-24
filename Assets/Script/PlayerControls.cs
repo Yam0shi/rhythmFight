@@ -7,7 +7,7 @@ public class PlayerControls : MonoBehaviour
 
     [Header("Stats :")]
     [SerializeField] private int playerLife;
-    [SerializeField] private float playerSpeed = 6, jumpSpeed = 8;
+    [SerializeField] private float playerSpeed = 6;
 
     [Header("Bool")]
     [SerializeField] private bool takeDamage;
@@ -20,6 +20,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private Vector3 initialPosWhenGoNextTo;
     [SerializeField] private Transform[] waysForPlayer;
     [SerializeField] private int indexOfWays;
+    [SerializeField] private Animator playerAnims;
 
     void Start()
     {
@@ -50,6 +51,7 @@ public class PlayerControls : MonoBehaviour
 
             if (nextIndex <= waysForPlayer.Length - 1)
             {
+                playerAnims.SetFloat("direction", 1);
                 nextIndex = indexOfWays + 1;
             }else
             nextIndex = 4;
@@ -63,6 +65,7 @@ public class PlayerControls : MonoBehaviour
 
             if (nextIndex >= 0)
             {
+                playerAnims.SetFloat("direction", -1);
                 nextIndex = indexOfWays - 1;
 
             }else
@@ -71,6 +74,10 @@ public class PlayerControls : MonoBehaviour
             transform.position = new Vector3(waysForPlayer[nextIndex].position.x, AxisY);
 
             indexOfWays = nextIndex;
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            playerAnims.SetFloat("direction", 0);
         }
     }
 
