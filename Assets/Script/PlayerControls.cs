@@ -15,7 +15,6 @@ public class PlayerControls : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private Slider sliderLife;
-    [SerializeField] private GameObject life;
 
     [Header("other :")]
     [SerializeField] private Vector3 initialPosWhenGoNextTo;
@@ -40,6 +39,7 @@ public class PlayerControls : MonoBehaviour
         }
 
         MovingPlayer();
+        LifeGestion();
 
         if (takeDamage)
         {
@@ -51,6 +51,11 @@ public class PlayerControls : MonoBehaviour
             Debug.Log("invincibilité désactivé");
             StopCoroutine(Invincibility());
         }
+    }
+
+    void LifeGestion()
+    {
+        sliderLife.GetComponent<RectTransform>().position =  Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
     }
 
     void MovingPlayer()
@@ -103,7 +108,6 @@ public class PlayerControls : MonoBehaviour
     {
         if (other.CompareTag("Ennemy"))
         {
-                life.SetActive(true);
             if(takeDamage == false)
             {
                 takeDamage = true;

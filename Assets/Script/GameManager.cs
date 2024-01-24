@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     #region(singleton)
     private void Awake()
     {
+        Time.timeScale = 1.0f;
         if (instance != null)
         {
             Debug.LogWarning("More than one instance of the script");
@@ -48,7 +49,6 @@ public class GameManager : MonoBehaviour
     public void MyLoadScene(int idScene)
     {
         SceneManager.LoadScene(idScene);
-        Time.timeScale = 1.0f;
     }
 
     public void QuitGame()
