@@ -14,7 +14,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private bool takeDamage;
 
     [Header("UI")]
-    [SerializeField] private Slider sliderLife;
+    [SerializeField] private Image lifeImage;
+    [SerializeField] private Sprite[] LifeVisual;
 
     [Header("other :")]
     [SerializeField] private Vector3 initialPosWhenGoNextTo;
@@ -22,40 +23,36 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private int indexOfWays;
     [SerializeField] private Animator playerAnims;
     [SerializeField] private GameObject chutTest;
+    
     void Start()
     {
         indexOfWays = 2;
-
-        sliderLife.maxValue = playerLife;
-        sliderLife.value = playerLife;
     }
 
     void Update()
     {
-        //Quand le joueur perd tout ses pv
         if (playerLife <= 0)
-        {
             GameManager.GetInstance().Lose();
-        }
 
         MovingPlayer();
         LifeGestion();
 
         if (takeDamage)
-        {
-            Debug.Log("invincibilité activé");
             StartCoroutine(Invincibility());
-        }
         else
-        {
-            Debug.Log("invincibilité désactivé");
             StopCoroutine(Invincibility());
-        }
     }
 
     void LifeGestion()
     {
-        sliderLife.GetComponent<RectTransform>().position =  Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
+        Camera.main.ScreenToWorldPoint(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
+
+        if (playerLife == 3)
+            lifeImage.sprite = LifeVisual[0];
+        else if (playerLife == 2)
+            lifeImage.sprite = LifeVisual[1];
+        else if (playerLife == 1)
+            lifeImage.sprite = LifeVisual[2];
     }
 
     void MovingPlayer()
@@ -113,7 +110,6 @@ public class PlayerControls : MonoBehaviour
                 takeDamage = true;
 
                 playerLife--;
-                sliderLife.value--;
             }
             Destroy(other.gameObject);
         }
