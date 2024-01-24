@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class BossScript : MonoBehaviour
@@ -9,14 +10,38 @@ public class BossScript : MonoBehaviour
     [SerializeField] private GameObject ennemyPrefab;
     [SerializeField] private float bulletSpeed;
 
+
+    public float bpm = 120f; // Remplacez par le BPM réel de votre musique
+    private float beatInterval;
+    private float nextBeatTime;
+
+
     void Start()
+    {        
+        beatInterval = 60f / bpm;
+
+        nextBeatTime = Time.time + beatInterval;
+    }
+
+    private void Update()
     {
-        StartCoroutine(EnnemySpawner());
+        BeatMap();
+    }
+
+    void BeatMap()
+    {
+        if (Time.time >= nextBeatTime)
+        {
+            int indexRandom = Random.Range(0, ennemySpawner.Length);
+            Instantiate(ennemyPrefab, ennemySpawner[indexRandom].position, Quaternion.identity, ennemySpawner[indexRandom]);
+
+            nextBeatTime += beatInterval;
+        }
     }
 
     private void FixedUpdate()
     {
-        EnnemyBulletMoving();
+            EnnemyBulletMoving();
     }
 
     void EnnemyBulletMoving()
@@ -32,14 +57,5 @@ public class BossScript : MonoBehaviour
                 AllBullets.RemoveAt(i);
             }
         }
-    }
-
-    private IEnumerator EnnemySpawner()
-    {
-        int indexRandom = Random.Range(0, ennemySpawner.Length);
-        GameObject ennemyBullet = Instantiate(ennemyPrefab, ennemySpawner[indexRandom].position, Quaternion.identity, ennemySpawner[indexRandom]);
-        AllBullets.Add(ennemyBullet.transform);
-        yield return new WaitForSeconds(1);
-        StartCoroutine(EnnemySpawner());
     }
 }
