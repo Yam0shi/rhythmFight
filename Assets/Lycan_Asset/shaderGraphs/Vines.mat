@@ -57,7 +57,7 @@ Material:
     - _lightingCutoff_1: -0.3
     - _shadowBrightness: 0.3
     m_Colors:
-    - _Colordark: {r: 1, g: 0, b: 0, a: 0}
-    - _Colorlight: {r: 0.9056604, g: 0.5807456, b: 0.38875046, a: 0}
-    - _Colormid: {r: 0, g: 0.28627437, b: 1, a: 0}
+    - _Colordark: {r: 0.11921501, g: 0.4433962, b: 0.25233215, a: 0}
+    - _Colorlight: {r: 0.3446066, g: 0.6037736, b: 0.3813733, a: 0}
+    - _Colormid: {r: 0.27643964, g: 0.5283019, b: 0.2267711, a: 0}
   m_BuildTextureStacks: []

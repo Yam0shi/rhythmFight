@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_celShading 2
+  m_Name: Hero_Mat
   m_Shader: {fileID: -6465566751694194690, guid: 8286ebe352c3e194ca3a3143a2f13ec3,
     type: 3}
   m_Parent: {fileID: 0}
@@ -61,17 +61,17 @@ Material:
     m_Floats:
     - _BRIGHNESS: 0
     - _Brightness: 0
-    - _Brightness_Light: 0
-    - _Brightness_dark: 0
+    - _Brightness_Light: 0.258
+    - _Brightness_dark: 0.429
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _lightingCutoff: -0.3
-    - _lightingCutoff_1: -0.3
+    - _lightingCutoff: -0.788
+    - _lightingCutoff_1: 0.079
     - _shadowBrightness: 0.3
     m_Colors:
-    - _Colordark: {r: 0.14796191, g: 0.24908115, b: 0.3301887, a: 0}
+    - _Colordark: {r: 0.6132076, g: 0.51395905, b: 0.43676576, a: 0}
     - _Colorlight: {r: 1, g: 1, b: 1, a: 0}
-    - _Colormid: {r: 0.24150053, g: 0.28701514, b: 0.6320754, a: 0}
-    - _offset: {r: 0, g: 0, b: 0, a: 0}
-    - _tiling: {r: 0, g: 0, b: 0, a: 0}
+    - _Colormid: {r: 0.5849056, g: 0.35061848, b: 0.16278034, a: 0}
+    - _offset: {r: 1, g: 1, b: 0, a: 0}
+    - _tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
