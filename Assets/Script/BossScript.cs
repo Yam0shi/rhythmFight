@@ -23,7 +23,14 @@ public class BossScript : MonoBehaviour
     {
         for (int i = 0; i < AllBullets.Count; i++)
         {
-            AllBullets[i].transform.position += Vector3.back * bulletSpeed * Time.deltaTime;
+            if (AllBullets[i] != null)
+            {
+                AllBullets[i].transform.position += Vector3.back * bulletSpeed * Time.deltaTime;
+            }
+            else
+            {
+                AllBullets.RemoveAt(i);
+            }
         }
     }
 
@@ -32,10 +39,7 @@ public class BossScript : MonoBehaviour
         int indexRandom = Random.Range(0, ennemySpawner.Length);
         GameObject ennemyBullet = Instantiate(ennemyPrefab, ennemySpawner[indexRandom].position, Quaternion.identity, ennemySpawner[indexRandom]);
         AllBullets.Add(ennemyBullet.transform);
-        yield return new WaitForSeconds(3);
-        if(ennemyBullet.transform.position.z <= 3)
-            Destroy(ennemyBullet);
-
+        yield return new WaitForSeconds(1);
         StartCoroutine(EnnemySpawner());
     }
 }

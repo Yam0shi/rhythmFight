@@ -9,9 +9,6 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private int playerLife;
     [SerializeField] private float playerSpeed = 6, jumpSpeed = 8;
 
-    [Header("Script")]
-    [SerializeField] private GameManager theManager;
-
     [Header("Bool")]
     [SerializeField] private bool takeDamage;
 
@@ -26,8 +23,6 @@ public class PlayerControls : MonoBehaviour
 
     void Start()
     {
-        theManager = gameObject.AddComponent<GameManager>();
-
         indexOfWays = 2;
 
         sliderLife.maxValue = playerLife;
@@ -39,15 +34,7 @@ public class PlayerControls : MonoBehaviour
         //Quand le joueur perd tout ses pv
         if (playerLife <= 0)
         {
-            theManager.Lose();
-        }
-
-        //Test pour voir si la barre s'affiche de vie, et qu'on perd des pv
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            life.SetActive(true);
-            playerLife--;
-            sliderLife.value--;
+            GameManager.GetInstance().Lose();
         }
 
         MovingPlayer();
@@ -92,6 +79,10 @@ public class PlayerControls : MonoBehaviour
         if (other.CompareTag("Ennemy"))
         {
             takeDamage = true;
+
+            life.SetActive(true);
+            playerLife--;
+            sliderLife.value--;
         }
     }
 }

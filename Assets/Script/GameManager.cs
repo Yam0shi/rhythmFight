@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,24 @@ public class GameManager : MonoBehaviour
     public Slider barrePatience;
     public float timerMax;
     private float timerPatience;
+    public static GameManager instance;
+
+    #region(singleton)
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of the script");
+        }
+
+        instance = this;
+    }
+
+    public static GameManager GetInstance()
+    {
+        return instance;
+    }
+    #endregion
 
     private void Start()
     {
@@ -28,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void MyLoadScene(int idScene)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(idScene);
+        SceneManager.LoadScene(idScene);
         Time.timeScale = 1.0f;
     }
 
