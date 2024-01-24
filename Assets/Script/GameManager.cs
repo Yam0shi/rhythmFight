@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
         if (timerPatience > timerMax)
         {
-            Win();
+            CinematiquesController.isEnd = true;
         }
     }
 
