@@ -45,7 +45,7 @@ public class PlayerControls : MonoBehaviour
 
     void LifeGestion()
     {
-        Camera.main.ScreenToWorldPoint(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
+        lifeImage.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
 
         if (playerLife == 3)
             lifeImage.sprite = LifeVisual[0];
@@ -101,6 +101,26 @@ public class PlayerControls : MonoBehaviour
         takeDamage = false;
     }
 
+    private IEnumerator ShakeCamera(float duration, float magnitude)
+    {
+        Vector3 originalPos = Camera.main.transform.position;
+        float elapsed = 0;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-137.5f, -139.5f) * magnitude;
+            float y = Random.Range(-233, -235) * magnitude;
+
+            Camera.main.transform.localPosition = new Vector3(x, y, originalPos.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+        Camera.main.transform.position = originalPos;
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ennemy"))
@@ -108,10 +128,10 @@ public class PlayerControls : MonoBehaviour
             if(takeDamage == false)
             {
                 takeDamage = true;
-
                 playerLife--;
             }
             Destroy(other.gameObject);
+            //StartCoroutine(ShakeCamera(1, .5f));
         }
     }
 }
