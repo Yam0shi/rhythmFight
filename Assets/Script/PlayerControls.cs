@@ -43,9 +43,9 @@ public class PlayerControls : MonoBehaviour
             StopCoroutine(Invincibility());
     }
 
-    void LifeGestion()
+    public void LifeGestion()
     {
-        lifeImage.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        lifeImage.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
 
         if (playerLife == 3)
             lifeImage.sprite = LifeVisual[0];
@@ -108,10 +108,9 @@ public class PlayerControls : MonoBehaviour
 
         while (elapsed < duration)
         {
-            float x = Random.Range(-137.5f, -139.5f) * magnitude;
-            float y = Random.Range(-233, -235) * magnitude;
+            float x = Random.Range(-1, 1) * magnitude;
 
-            Camera.main.transform.localPosition = new Vector3(x, y, originalPos.z);
+            Camera.main.transform.localPosition = new Vector3(x, originalPos.y, originalPos.z);
 
             elapsed += Time.deltaTime;
 
@@ -131,7 +130,7 @@ public class PlayerControls : MonoBehaviour
                 playerLife--;
             }
             Destroy(other.gameObject);
-            //StartCoroutine(ShakeCamera(1, .5f));
+            StartCoroutine(ShakeCamera(1, .2f));
         }
     }
 }

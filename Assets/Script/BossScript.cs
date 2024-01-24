@@ -19,7 +19,10 @@ public class BossScript : MonoBehaviour
 
     private void Update()
     {
-        BeatMap();
+        if (soundSource.isPlaying == true)
+        {
+            BeatMap();
+        }
         PartSelection();
     }
 
@@ -28,19 +31,19 @@ public class BossScript : MonoBehaviour
         if (Time.time >= nextBeatTime)
         {
             int indexRandom = Random.Range(0, ennemySpawner.Length);
-            Instantiate(ennemyPrefab, ennemySpawner[indexRandom].position, Quaternion.identity, ennemySpawner[indexRandom]);
+            GameObject bullet = Instantiate(ennemyPrefab, ennemySpawner[indexRandom].position, Quaternion.identity, ennemySpawner[indexRandom]);
             nextBeatTime += beatInterval;
         }
     }
 
     void PartSelection()
     {
-        if(soundSource.time < 27f)
+        if (soundSource.time < 27f)
         {
             bpm = 80;
             beatInterval = 60f / bpm;
         }
-        else if(soundSource.time >= 27f && soundSource.time < 34f)
+        else if (soundSource.time >= 27f && soundSource.time < 34f)
         {
             bpm = 160;
             beatInterval = 60f / bpm;
