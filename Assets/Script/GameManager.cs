@@ -11,10 +11,14 @@ public class GameManager : MonoBehaviour
     public float timerMax;
     private float timerPatience;
     public static GameManager instance;
+    public Animator anim;
 
     public CinematiquesController theCinematique;
 
     public static bool isGame;
+    private bool isFinish;
+
+    public AudioSource sfxProut;
 
     #region(singleton)
     private void Awake()
@@ -42,12 +46,19 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        anim.SetBool("IsFinish", isFinish);
+
         if (isGame) 
         { 
             timerPatience += Time.deltaTime;
             barrePatience.value += Time.deltaTime;
 
             if (barrePatience.value >= 66)
+            {
+                isFinish = true;
+            }
+
+            if (timerPatience > 66.5f)
             {
                 Destroy(GameObject.FindWithTag("Ennemy"));
             }
@@ -82,6 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        sfxProut.Play();
         panelWin.SetActive(true);
         Time.timeScale = 0.0f;
     }
