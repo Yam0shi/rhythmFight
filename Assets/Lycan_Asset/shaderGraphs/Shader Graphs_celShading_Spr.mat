@@ -51,7 +51,7 @@ Material:
     m_Colors:
     - _Colordark: {r: 0.408805, g: 0.2976729, b: 0.25839558, a: 0}
     - _Colorlight: {r: 1, g: 1, b: 1, a: 0}
-    - _Colormid: {r: 0.5411765, g: 0.47058824, b: 0.2901961, a: 0}
+    - _Colormid: {r: 0, g: 173.00009, b: 255.00015, a: 0}
     - _offset: {r: 1, g: 1, b: 0, a: 0}
     - _tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

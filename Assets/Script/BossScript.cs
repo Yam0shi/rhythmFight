@@ -4,11 +4,14 @@ public class BossScript : MonoBehaviour
 {
     [SerializeField] private Transform[] ennemySpawner;
     [SerializeField] private GameObject ennemyPrefab;
+    [SerializeField] private Animator BossAnims;
     
     [SerializeField] private float bpm;
     [SerializeField] private AudioSource soundSource;
     private float beatInterval;
     private float nextBeatTime;
+    [SerializeField] private string[] rightAnims;
+    [SerializeField] private string[] leftAnims;
 
 
     void Start()
@@ -32,6 +35,18 @@ public class BossScript : MonoBehaviour
         {
             int indexRandom = Random.Range(0, ennemySpawner.Length);
             Instantiate(ennemyPrefab, ennemySpawner[indexRandom].position, Quaternion.identity, ennemySpawner[indexRandom]);
+            if (indexRandom == 0 || indexRandom == 1)
+            {
+                BossAnims.SetTrigger(rightAnims[Random.Range(0,2)]);
+            }
+            else if (indexRandom == 2)
+            {
+                BossAnims.SetTrigger("center");
+            }
+            else if (indexRandom == 3 || indexRandom == 4)
+            {
+                BossAnims.SetTrigger(leftAnims[Random.Range(0, 2)]);
+            }
             nextBeatTime += beatInterval;
         }
     }
