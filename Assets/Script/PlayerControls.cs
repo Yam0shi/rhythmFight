@@ -20,11 +20,13 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private Transform[] waysForPlayer;
     private int indexOfWays;
     [SerializeField] private Animator playerAnims;
-    [SerializeField] private GameObject chutTest;
-    
+    public Material playerMat;
+    public Color baseColor;
+    public Color invincibleColor = new(0, 173, 255, 0);
     void Start()
     {
         indexOfWays = 2;
+        baseColor = playerMat.GetColor("_Colormid");
     }
 
     void Update()
@@ -93,9 +95,10 @@ public class PlayerControls : MonoBehaviour
 
     private IEnumerator Invincibility()
     {
-        chutTest.SetActive(true);
+        playerMat.SetColor("_Colormid", invincibleColor);
         yield return new WaitForSeconds(2);
-        chutTest.SetActive(false);
+        Debug.Log("après l'attente");
+        playerMat.SetColor("_Colormid", baseColor);
         takeDamage = false;
     }
 

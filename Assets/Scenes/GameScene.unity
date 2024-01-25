@@ -6118,6 +6118,11 @@ PrefabInstance:
       objectReference: {fileID: 1047519135}
     - target: {fileID: 5270479969942584128, guid: 4bd47e69cf303434894a4248d8b4cac6,
         type: 3}
+      propertyPath: playerMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 010f209e7c8bcfd4a8869f4b085eadc5, type: 2}
+    - target: {fileID: 5270479969942584128, guid: 4bd47e69cf303434894a4248d8b4cac6,
+        type: 3}
       propertyPath: sliderLife
       value: 
       objectReference: {fileID: 0}
