@@ -31,7 +31,7 @@ public class BossScript : MonoBehaviour
         if (Time.time >= nextBeatTime)
         {
             int indexRandom = Random.Range(0, ennemySpawner.Length);
-            GameObject bullet = Instantiate(ennemyPrefab, ennemySpawner[indexRandom].position, Quaternion.identity, ennemySpawner[indexRandom]);
+            Instantiate(ennemyPrefab, ennemySpawner[indexRandom].position, Quaternion.identity, ennemySpawner[indexRandom]);
             nextBeatTime += beatInterval;
         }
     }

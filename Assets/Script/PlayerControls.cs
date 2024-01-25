@@ -8,7 +8,6 @@ public class PlayerControls : MonoBehaviour
 
     [Header("Stats :")]
     [SerializeField] private int playerLife;
-    [SerializeField] private float playerSpeed = 6;
 
     [Header("Bool")]
     [SerializeField] private bool takeDamage;
@@ -18,9 +17,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private Sprite[] LifeVisual;
 
     [Header("other :")]
-    [SerializeField] private Vector3 initialPosWhenGoNextTo;
     [SerializeField] private Transform[] waysForPlayer;
-    [SerializeField] private int indexOfWays;
+    private int indexOfWays;
     [SerializeField] private Animator playerAnims;
     [SerializeField] private GameObject chutTest;
     
@@ -45,7 +43,7 @@ public class PlayerControls : MonoBehaviour
 
     public void LifeGestion()
     {
-        lifeImage.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z));
+        lifeImage.rectTransform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y +1.5f, transform.position.z));
 
         if (playerLife == 3)
             lifeImage.sprite = LifeVisual[0];
