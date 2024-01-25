@@ -29,7 +29,7 @@ public class CinematiquesController : MonoBehaviour
         life.SetActive(false);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (nbNextPanel == 1 && !isPlay) 
         { 
