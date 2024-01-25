@@ -63,18 +63,19 @@ public class CinematiquesController : MonoBehaviour
             
             if (isEnd)
             {
-                if (nbNextPanel < 8)
+                if (nbNextPanel < 7)
                 {
                     nbNextPanel++;
                     panelInit = panelCinematique[nbNextPanel];
                     panelInit.SetActive(true);
                 }
 
-                if (nbNextPanel >= 8)
+                if (nbNextPanel >= 7)
                 {
                     panelEnd.SetActive(false);
                     audioEnd.Stop();
                     isEnd = false;
+                    GameManager.isGame = false;
                     theManager.Win();
                 }
             }

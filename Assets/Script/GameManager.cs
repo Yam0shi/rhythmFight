@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
             {
                 theCinematique.audioEnd.Play();
                 theCinematique.panelEnd.SetActive(true);
+                theCinematique.life.SetActive(false);
                 CinematiquesController.isEnd = true;
                 Time.timeScale = 0.0f;
             }
