@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private bool isFinish;
 
     public AudioSource sfxProut;
+    public AudioSource audioLevel;
 
     #region(singleton)
     private void Awake()
@@ -89,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         panelLose.SetActive(true);
         Time.timeScale = 0.0f;
+        audioLevel.Stop();
     }
 
     public void Win()

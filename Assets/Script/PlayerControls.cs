@@ -23,6 +23,7 @@ public class PlayerControls : MonoBehaviour
     public Material playerMat;
     public Color baseColor;
     public Color invincibleColor = new(0, 173, 255, 0);
+
     void Start()
     {
         indexOfWays = 2;
