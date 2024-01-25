@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private float timerPatience;
     public static GameManager instance;
 
+    public CinematiquesController theCinematique;
+
     public static bool isGame;
 
     #region(singleton)
@@ -34,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        barrePatience.maxValue = timerMax;
+        barrePatience.maxValue = 66;
         isGame = false;
     }
 
@@ -45,12 +47,17 @@ public class GameManager : MonoBehaviour
             timerPatience += Time.deltaTime;
             barrePatience.value += Time.deltaTime;
 
-            if (timerPatience > timerMax)
+            if (barrePatience.value >= 66)
             {
-                //CinematiquesController.isEnd = true;
-                //Time.timeScale = 0.0f;
+                Destroy(GameObject.FindWithTag("Ennemy"));
+            }
 
-                Win();
+            if (timerPatience > timerMax && !CinematiquesController.isEnd)
+            {
+                theCinematique.audioEnd.Play();
+                theCinematique.panelEnd.SetActive(true);
+                CinematiquesController.isEnd = true;
+                Time.timeScale = 0.0f;
             }
         }
     }

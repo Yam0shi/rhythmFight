@@ -72,8 +72,8 @@ public class CinematiquesController : MonoBehaviour
 
                 if (nbNextPanel >= 8)
                 {
-                    panelIntro.SetActive(false);
-                    level.SetActive(true);
+                    panelEnd.SetActive(false);
+                    audioEnd.Stop();
                     isEnd = false;
                     theManager.Win();
                 }
