@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5270479969942584128}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,14 +180,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLife: 3
-  playerSpeed: 6
   takeDamage: 0
-  sliderLife: {fileID: 0}
-  initialPosWhenGoNextTo: {x: 0, y: 0, z: 0}
-  waysForPlayer: []
-  indexOfWays: 0
+  lifeImage: {fileID: 0}
+  LifeVisual:
+  - {fileID: 21300000, guid: 42ca7c6ca66fb5f4d8864cea53834332, type: 3}
+  - {fileID: 21300000, guid: 1719ca2d3cb9e414799f6aea2a5409a5, type: 3}
+  - {fileID: 21300000, guid: 7da4722dd9826dd4da7a64f7be568907, type: 3}
+  waysForPlayer:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerAnims: {fileID: 6213026760822986646}
-  chutTest: {fileID: 1855462305434791841}
+  playerMat: {fileID: 2100000, guid: 010f209e7c8bcfd4a8869f4b085eadc5, type: 2}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
+  invincibleColor: {r: 0, g: 173, b: 255, a: 0}
 --- !u!1001 &6446967812084586119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -284,7 +292,17 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6213026760822986646}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 327caa014ceece046a2cd5dec2acb9f7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3564131695188482747}
   m_SourcePrefab: {fileID: 100100000, guid: 327caa014ceece046a2cd5dec2acb9f7, type: 3}
+--- !u!1 &533050054259499141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6781854938341193218, guid: 327caa014ceece046a2cd5dec2acb9f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6446967812084586119}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6177059351348440022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 327caa014ceece046a2cd5dec2acb9f7,
@@ -312,6 +330,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3564131695188482747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177059351348440022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5329dfcba7d714e82930e930b5132d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VfxSlash: {fileID: 919132149155446097, guid: dfa9ee4e768312f4d8e7c96d92af544e, type: 3}
+  sword: {fileID: 533050054259499141}
+  Speed: 10
 --- !u!4 &6841674185154015596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 327caa014ceece046a2cd5dec2acb9f7,
